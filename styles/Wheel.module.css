@@ -11,9 +11,9 @@
 
 .title {
   font-weight: 600;
- 
+  color: #000000;
   margin-bottom: 20px;
-    color: inherit;
+  
 }
 
 
@@ -22,6 +22,20 @@
   color: #f2f2f7;
 }
 
+.darkMode .leftPanel,
+.darkMode .settingsPanel,
+.darkMode .results {
+  background-color: #2c2c2e;
+  color: #f2f2f7;
+}
+
+.darkMode .spinButton {
+  background-color: #0a84ff;
+}
+
+.darkMode .spinButton:hover {
+  background-color: #007aff;
+}
 
 .content {
   display: flex;

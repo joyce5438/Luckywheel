@@ -1,10 +1,11 @@
+import React from 'react'
 import styles from '../styles/SettingsPanel.module.css'
 
-export default function SettingsPanel({ 
-  removeWinner, setRemoveWinner, 
-  playSounds, setPlaySounds,
-  darkMode, setDarkMode
-}) {
+export default function SettingsPanel({ removeWinner, setRemoveWinner, playSounds, setPlaySounds, darkMode, setDarkMode }) {
+  const toggleDarkMode = () => {
+    setDarkMode(prev => !prev) // 切換深色模式
+  }
+  
   return (
     <div className={styles.settingsPanel}>
       <div className={styles.settingItem}>

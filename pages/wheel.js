@@ -83,14 +83,14 @@ export default function WheelPage({ darkMode, setDarkMode }) {
           </button>
         </div>
         <div className={styles.rightPanel}>
-          <SettingsPanel 
-            removeWinner={removeWinner} 
-            setRemoveWinner={setRemoveWinner}
-            playSounds={playSounds}
-            setPlaySounds={setPlaySounds}
-			darkMode={darkMode}
-            setDarkMode={setDarkMode}
-          />
+		<SettingsPanel 
+		removeWinner={removeWinner} 
+		setRemoveWinner={setRemoveWinner}
+		playSounds={playSounds}
+		setPlaySounds={setPlaySounds}
+		darkMode={darkMode}
+		setDarkMode={setDarkMode} 
+		/>
 		  
           <Results results={results} />
         </div>
