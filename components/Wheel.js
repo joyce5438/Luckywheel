@@ -5,7 +5,7 @@ export default function Wheel({ prizes, onSpin }) {
   const [rotating, setRotating] = useState(false)
 
   const handleSpin = () => {
-    if (!rotating) {
+    if (!rotating && prizes.length > 0) {
       setRotating(true)
       onSpin()
       setTimeout(() => setRotating(false), 3000)
@@ -23,11 +23,11 @@ export default function Wheel({ prizes, onSpin }) {
               transform: `rotate(${(360 / prizes.length) * index}deg)`
             }}
           >
-            <span className={styles.sliceText}>{prize.name}</span>
+            <span className={styles.sliceText}>{prize}</span>
           </div>
         ))}
       </div>
-      <button onClick={handleSpin} disabled={rotating}>
+      <button onClick={handleSpin} disabled={rotating || prizes.length === 0}>
         {rotating ? '抽獎中...' : '按一下抽獎'}
       </button>
     </div>

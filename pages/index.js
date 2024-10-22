@@ -1,29 +1,30 @@
-import { useState, useEffect } from 'react'
-import Wheel from '../components/Wheel'
-import Results from '../components/Results'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
-  const [prizes, setPrizes] = useState([])
-  const [results, setResults] = useState([])
+  const [prizes, setPrizes] = useState('')
+  const router = useRouter()
 
-  useEffect(() => {
-    fetch('/api/prizes')
-      .then(res => res.json())
-      .then(data => setPrizes(data))
-  }, [])
-
-  const handleSpin = async () => {
-    const res = await fetch('/api/draw', { method: 'POST' })
-    const result = await res.json()
-    setResults(prev => [result, ...prev])
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const prizeList = prizes.split('\n').filter(prize => prize.trim() !== '')
+    localStorage.setItem('prizes', JSON.stringify(prizeList))
+    router.push('/wheel')
   }
 
   return (
     <div className={styles.container}>
-      <h1>幸運抽獎輪盤</h1>
-      <Wheel prizes={prizes} onSpin={handleSpin} />
-      <Results results={results} />
+      <h1>輸入獎項</h1>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <textarea
+          value={prizes}
+          onChange={(e) => setPrizes(e.target.value)}
+          placeholder="請輸入獎項，每行一個"
+          className={styles.textarea}
+        />
+        <button type="submit" className={styles.button}>開始抽獎</button>
+      </form>
     </div>
   )
 }
