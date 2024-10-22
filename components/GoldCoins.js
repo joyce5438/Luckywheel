@@ -1,23 +1,39 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from '../styles/GoldCoins.module.css'
 
 export default function GoldCoins({ showCoins, playSounds }) {
-  const audioRef = useRef(null)
+  const [audio, setAudio] = useState(null)
+  const coinCountRef = useRef(0)
 
   useEffect(() => {
-    audioRef.current = new Audio('/coin-sound.mp3')
-    audioRef.current.volume = 0.5 // 設置音量
+    const audioPath = process.env.NEXT_PUBLIC_AUDIO_PATH || '/coin-sound.mp3'
+    const newAudio = new Audio(audioPath)
+    newAudio.volume = 0.5 // 設置音量
+    newAudio.loop = true // 設置循環播放
+    setAudio(newAudio)
+
+    return () => {
+      if (newAudio) {
+        newAudio.pause()
+        newAudio.currentTime = 0
+      }
+    }
   }, [])
 
   useEffect(() => {
     if (showCoins) {
+      coinCountRef.current = 0
       showConfetti()
     }
   }, [showCoins])
 
   const showConfetti = () => {
-    for (let i = 0; i < 100; i++) {
+    const coinCount = 100
+    for (let i = 0; i < coinCount; i++) {
       createCoin()
+    }
+    if (playSounds && audio) {
+      audio.play().catch(error => console.error('Error playing sound:', error))
     }
   }
 
@@ -36,12 +52,15 @@ export default function GoldCoins({ showCoins, playSounds }) {
 
     document.body.appendChild(coin)
 
+    coinCountRef.current++
+
     setTimeout(() => {
-      if (playSounds && audioRef.current) {
-        const sound = audioRef.current.cloneNode()
-        sound.play()
-      }
       document.body.removeChild(coin)
+      coinCountRef.current--
+      if (coinCountRef.current === 0 && audio) {
+        audio.pause()
+        audio.currentTime = 0
+      }
     }, duration * 1000)
   }
 
