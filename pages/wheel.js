@@ -12,6 +12,7 @@ export default function WheelPage() {
   const [isSpinning, setIsSpinning] = useState(false)
   const [showCoins, setShowCoins] = useState(false)
   const [removeWinner, setRemoveWinner] = useState(true)
+  const [playSounds, setPlaySounds] = useState(false)
 
   useEffect(() => {
     const storedPrizes = JSON.parse(localStorage.getItem('prizes') || '[]')
@@ -71,7 +72,13 @@ export default function WheelPage() {
           </button>
         </div>
         <div className={styles.rightPanel}>
-          <SettingsPanel removeWinner={removeWinner} setRemoveWinner={setRemoveWinner} />
+          <SettingsPanel 
+            removeWinner={removeWinner} 
+            setRemoveWinner={setRemoveWinner}
+            playSounds={playSounds}
+            setPlaySounds={setPlaySounds}
+          />
+		  
           <Results results={results} />
         </div>
       </div>

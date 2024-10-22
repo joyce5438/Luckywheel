@@ -1,7 +1,14 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import styles from '../styles/GoldCoins.module.css'
 
-export default function GoldCoins({ showCoins }) {
+export default function GoldCoins({ showCoins, playSounds }) {
+  const audioRef = useRef(null)
+
+  useEffect(() => {
+    audioRef.current = new Audio('/coin-sound.mp3')
+    audioRef.current.volume = 0.5 // 設置音量
+  }, [])
+
   useEffect(() => {
     if (showCoins) {
       showConfetti()
@@ -30,6 +37,10 @@ export default function GoldCoins({ showCoins }) {
     document.body.appendChild(coin)
 
     setTimeout(() => {
+      if (playSounds && audioRef.current) {
+        const sound = audioRef.current.cloneNode()
+        sound.play()
+      }
       document.body.removeChild(coin)
     }, duration * 1000)
   }
