@@ -14,20 +14,20 @@ export default function WheelPage({ darkMode, setDarkMode }) {
   const [removeWinner, setRemoveWinner] = useState(true)
   const [playSounds, setPlaySounds] = useState(false)
 
- useEffect(() => {
+  useEffect(() => {
     const storedPrizes = JSON.parse(localStorage.getItem('prizes') || '[]')
     setPrizes(storedPrizes)
     
     // 從 localStorage 讀取主題設置
     const storedDarkMode = localStorage.getItem('darkMode') === 'true'
     setDarkMode(storedDarkMode)
-  }, [])
+  }, [setDarkMode])
 
   useEffect(() => {
     // 當主題改變時，更新 body 的 class
     document.body.classList.toggle('dark-mode', darkMode)
     // 保存主題設置到 localStorage
-    localStorage.setItem('darkMode', darkMode)
+    localStorage.setItem('darkMode', darkMode.toString())
   }, [darkMode])
 
   const handleSpin = async () => {
@@ -60,7 +60,7 @@ export default function WheelPage({ darkMode, setDarkMode }) {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${darkMode ? styles.darkMode : ''}`}>
       <h1 className={styles.title}>幸運抽獎輪盤</h1>
       <div className={styles.content}>
         <div className={styles.leftPanel}>
@@ -83,22 +83,18 @@ export default function WheelPage({ darkMode, setDarkMode }) {
           </button>
         </div>
         <div className={styles.rightPanel}>
-		<SettingsPanel 
-		removeWinner={removeWinner} 
-		setRemoveWinner={setRemoveWinner}
-		playSounds={playSounds}
-		setPlaySounds={setPlaySounds}
-		darkMode={darkMode}
-		setDarkMode={setDarkMode} 
-		/>
-		  
+          <SettingsPanel 
+            removeWinner={removeWinner} 
+            setRemoveWinner={setRemoveWinner}
+            playSounds={playSounds}
+            setPlaySounds={setPlaySounds}
+            darkMode={darkMode}
+            setDarkMode={setDarkMode} 
+          />
           <Results results={results} />
         </div>
       </div>
-
-
-     <GoldCoins showCoins={showCoins} playSounds={playSounds} />
-
+      <GoldCoins showCoins={showCoins} playSounds={playSounds} />
     </div>
   )
 }
