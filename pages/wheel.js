@@ -82,7 +82,10 @@ export default function WheelPage() {
           <Results results={results} />
         </div>
       </div>
-      <GoldCoins showCoins={showCoins} />
+
+
+     <GoldCoins showCoins={showCoins} playSounds={playSounds} />
+
     </div>
   )
 }
