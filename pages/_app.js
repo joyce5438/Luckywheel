@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }) {
   const [darkMode, setDarkMode] = useState(false)
 
   useEffect(() => {
-    // 從 localStorage 讀取主題設置
+    // 從 localStorage 讀取主題設置，如果沒有設置，默認為 false（淺色模式）
     const storedDarkMode = localStorage.getItem('darkMode') === 'true'
     setDarkMode(storedDarkMode)
   }, [])
