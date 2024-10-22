@@ -7,12 +7,17 @@ import LanguageSwitcher from '../components/LanguageSwitcher'
 
 export default function Home() {
   const [prizes, setPrizes] = useState('')
+  const [error, setError] = useState('')
   const router = useRouter()
   const { t } = useTranslation('common')
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const prizeList = prizes.split('\n').filter(prize => prize.trim() !== '')
+    if (prizeList.length === 0) {
+      setError(t('noPrizesError'))
+      return
+    }
     localStorage.setItem('prizes', JSON.stringify(prizeList))
     router.push('/wheel')
   }
@@ -24,10 +29,14 @@ export default function Home() {
       <form onSubmit={handleSubmit} className={styles.form}>
         <textarea
           value={prizes}
-          onChange={(e) => setPrizes(e.target.value)}
+          onChange={(e) => {
+            setPrizes(e.target.value)
+            setError('')
+          }}
           placeholder={t('prizePlaceholder')}
           className={styles.textarea}
         />
+        {error && <p className={styles.error}>{error}</p>}
         <button type="submit" className={styles.button}>{t('startDrawing')}</button>
       </form>
     </div>
