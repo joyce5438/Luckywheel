@@ -22,13 +22,6 @@
   margin: 0 auto;
 }
 
-
-.rightPanel {
-  width: 100%;
-  max-width: 300px;
-}
-
-
 .leftPanel {
   background-color: #ffffff;
   padding: 20px;
@@ -161,6 +154,11 @@
   background-color: #0056b3;
 }
 
+.rightPanel {
+  width: 100%;
+  max-width: 300px;
+}
+
 @media (min-width: 768px) {
   .content {
     flex-direction: row;
@@ -180,3 +178,4 @@
   .rightPanel {
     margin-left: 20px;
   }
+}
