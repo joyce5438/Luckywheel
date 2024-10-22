@@ -1,23 +1,21 @@
 import { useState, useEffect } from 'react'
 import styles from '../styles/Wheel.module.css'
 
-export default function Wheel({ prizes, onSpin }) {
-  const [rotating, setRotating] = useState(false)
+export default function Wheel({ prizes, onSpin, isSpinning }) {
   const [currentRotation, setCurrentRotation] = useState(0)
 
-  const handleSpin = () => {
-    if (!rotating && prizes.length > 0) {
-      setRotating(true)
+  useEffect(() => {
+    if (isSpinning) {
       const randomSpin = Math.floor(Math.random() * 360) + 1440
       setCurrentRotation(prev => prev + randomSpin)
-      onSpin()
-      setTimeout(() => setRotating(false), 3000)
     }
-  }
+  }, [isSpinning])
 
-  useEffect(() => {
-    handleSpin()
-  }, [prizes])
+  // 生成 HSL 顏色
+  const getHSLColor = (index, total) => {
+    const hue = (index / total) * 360
+    return `hsl(${hue}, 70%, 70%)`
+  }
 
   return (
     <div className={styles.wheelContainer}>
@@ -30,7 +28,8 @@ export default function Wheel({ prizes, onSpin }) {
             key={index}
             className={styles.slice}
             style={{
-              transform: `rotate(${(360 / prizes.length) * index}deg)`
+              transform: `rotate(${(360 / prizes.length) * index}deg)`,
+              backgroundColor: getHSLColor(index, prizes.length)
             }}
           >
             <span className={styles.sliceText}>{prize}</span>

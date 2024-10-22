@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react'
 import Wheel from '../components/Wheel'
 import Results from '../components/Results'
+import GoldCoins from '../components/GoldCoins'
 import styles from '../styles/Wheel.module.css'
 
 export default function WheelPage() {
   const [prizes, setPrizes] = useState([])
   const [results, setResults] = useState([])
   const [numSpins, setNumSpins] = useState(1)
+  const [isSpinning, setIsSpinning] = useState(false)
+
 
   useEffect(() => {
     const storedPrizes = JSON.parse(localStorage.getItem('prizes') || '[]')
@@ -20,19 +23,18 @@ export default function WheelPage() {
     setPrizes(prev => prev.filter(prize => prize !== winningPrize))
   }
 
-  const handleMultiSpin = () => {
-    let spinsLeft = numSpins
-    const spinInterval = setInterval(() => {
-      if (spinsLeft > 0 && prizes.length > 0) {
-        handleSpin()
-        spinsLeft--
-      } else {
-        clearInterval(spinInterval)
-      }
-    }, 3000)
+  const handleMultiSpin = async () => {
+    if (isSpinning) return
+    setIsSpinning(true)
+    for (let i = 0; i < numSpins; i++) {
+      if (prizes.length === 0) break
+      handleSpin()
+      await new Promise(resolve => setTimeout(resolve, 3000))
+    }
+    setIsSpinning(false)
   }
 
-  return (
+return (
     <div className={styles.container}>
       <h1>幸運抽獎輪盤</h1>
       <div className={styles.leftPanel}>
@@ -42,13 +44,18 @@ export default function WheelPage() {
           id="numSpins"
           min="1"
           value={numSpins}
-          onChange={(e) => setNumSpins(parseInt(e.target.value))}
+          onChange={(e) => setNumSpins(Math.max(1, parseInt(e.target.value)))}
         />
-        <button onClick={handleMultiSpin}>送出</button>
+        <button onClick={handleMultiSpin} disabled={isSpinning}>
+          {isSpinning ? '抽獎中...' : '送出'}
+        </button>
       </div>
-      <Wheel prizes={prizes} onSpin={handleSpin} />
+      <Wheel prizes={prizes} onSpin={handleSpin} isSpinning={isSpinning} />
       <Results results={results} />
-      <button className={styles.spinButton} onClick={handleSpin}>按一下抽獎</button>
+      <button className={styles.spinButton} onClick={handleSpin} disabled={isSpinning}>
+        {isSpinning ? '抽獎中...' : '按一下抽獎'}
+      </button>
+      <GoldCoins isSpinning={isSpinning} />
     </div>
   )
 }

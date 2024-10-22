@@ -1,0 +1,21 @@
+.goldCoin {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  background-image: url('/gold-coin.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: coinFall linear forwards;
+}
+
+@keyframes coinFall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) rotate(720deg);
+  }
+}
