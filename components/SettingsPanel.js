@@ -27,7 +27,7 @@ export default function SettingsPanel({ removeWinner, setRemoveWinner, playSound
       </div>
       <div className={styles.settingItem}>
         <span>深色主題</span>
-        <label className={styles.switch}>
+         <label className={styles.switch}>
           <input
             type="checkbox"
             checked={darkMode}
