@@ -1,0 +1,13 @@
+{
+  "title": "Lucky Draw Wheel",
+  "spinButton": "Spin",
+  "spinning": "Spinning...",
+  "removeWinner": "Remove Winner",
+  "playSounds": "Play Sounds",
+  "darkMode": "Dark Mode",
+  "multiSpinLabel": "Number of spins:",
+  "multiSpinButton": "Submit",
+  "inputPrizes": "Enter Prizes",
+  "prizePlaceholder": "Enter prizes, one per line",
+  "startDrawing": "Start Drawing"
+}

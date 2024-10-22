@@ -1,0 +1,13 @@
+{
+  "title": "ラッキー抽選ホイール",
+  "spinButton": "スピン",
+  "spinning": "スピン中...",
+  "removeWinner": "当選者を除外",
+  "playSounds": "音を再生",
+  "darkMode": "ダークモード",
+  "multiSpinLabel": "スピン回数:",
+  "multiSpinButton": "送信",
+  "inputPrizes": "賞品を入力",
+  "prizePlaceholder": "賞品を1行ずつ入力してください",
+  "startDrawing": "抽選を開始"
+}

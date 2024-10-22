@@ -1,0 +1,13 @@
+{
+  "title": "幸運抽獎輪盤",
+  "spinButton": "按一下抽獎",
+  "spinning": "抽獎中...",
+  "removeWinner": "將中獎者移出輪盤",
+  "playSounds": "播放音效",
+  "darkMode": "深色主題",
+  "multiSpinLabel": "連抽次數:",
+  "multiSpinButton": "送出",
+  "inputPrizes": "輸入獎項",
+  "prizePlaceholder": "請輸入獎項，每行一個",
+  "startDrawing": "開始抽獎"
+}
