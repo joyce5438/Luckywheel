@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Wheel from '../components/Wheel'
 import Results from '../components/Results'
 import GoldCoins from '../components/GoldCoins'
+import SettingsPanel from '../components/SettingsPanel'
 import styles from '../styles/Wheel.module.css'
 
 export default function WheelPage() {
@@ -10,6 +11,7 @@ export default function WheelPage() {
   const [numSpins, setNumSpins] = useState(1)
   const [isSpinning, setIsSpinning] = useState(false)
   const [showCoins, setShowCoins] = useState(false)
+  const [removeWinner, setRemoveWinner] = useState(true)
 
   useEffect(() => {
     const storedPrizes = JSON.parse(localStorage.getItem('prizes') || '[]')
@@ -25,7 +27,10 @@ export default function WheelPage() {
     
     const winningPrize = prizes[Math.floor(Math.random() * prizes.length)]
     setResults(prev => [`恭喜中獎：${winningPrize}`, ...prev])
-    setPrizes(prev => prev.filter(prize => prize !== winningPrize))
+    
+    if (removeWinner) {
+      setPrizes(prev => prev.filter(prize => prize !== winningPrize))
+    }
     
     setIsSpinning(false)
     setShowCoins(false)
@@ -65,7 +70,10 @@ export default function WheelPage() {
             {isSpinning ? '抽獎中...' : '按一下抽獎'}
           </button>
         </div>
-        <Results results={results} />
+        <div className={styles.rightPanel}>
+          <SettingsPanel removeWinner={removeWinner} setRemoveWinner={setRemoveWinner} />
+          <Results results={results} />
+        </div>
       </div>
       <GoldCoins showCoins={showCoins} />
     </div>
