@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import styles from '../styles/GoldCoins.module.css'
 
-export default function GoldCoins({ isSpinning }) {
+export default function GoldCoins({ showCoins }) {
   useEffect(() => {
-    if (isSpinning) {
+    if (showCoins) {
       showConfetti()
     }
-  }, [isSpinning])
+  }, [showCoins])
 
   const showConfetti = () => {
     for (let i = 0; i < 100; i++) {

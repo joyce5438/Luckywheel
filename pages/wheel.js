@@ -9,32 +9,41 @@ export default function WheelPage() {
   const [results, setResults] = useState([])
   const [numSpins, setNumSpins] = useState(1)
   const [isSpinning, setIsSpinning] = useState(false)
-
+  const [showCoins, setShowCoins] = useState(false)
 
   useEffect(() => {
     const storedPrizes = JSON.parse(localStorage.getItem('prizes') || '[]')
     setPrizes(storedPrizes)
   }, [])
 
-  const handleSpin = () => {
-    if (prizes.length === 0) return
+  const handleSpin = async () => {
+    if (prizes.length === 0 || isSpinning) return
+    setIsSpinning(true)
+    setShowCoins(true)
+    
+    // 等待輪盤旋轉和金幣動畫
+    await new Promise(resolve => setTimeout(resolve, 3000))
+    
     const winningPrize = prizes[Math.floor(Math.random() * prizes.length)]
     setResults(prev => [`恭喜中獎：${winningPrize}`, ...prev])
     setPrizes(prev => prev.filter(prize => prize !== winningPrize))
+    
+    setIsSpinning(false)
+    setShowCoins(false)
   }
 
   const handleMultiSpin = async () => {
     if (isSpinning) return
-    setIsSpinning(true)
     for (let i = 0; i < numSpins; i++) {
       if (prizes.length === 0) break
-      handleSpin()
-      await new Promise(resolve => setTimeout(resolve, 3000))
+      await handleSpin()
+      if (i < numSpins - 1) {
+        await new Promise(resolve => setTimeout(resolve, 1000)) // 連續抽獎之間的間隔
+      }
     }
-    setIsSpinning(false)
   }
 
-return (
+  return (
     <div className={styles.container}>
       <h1>幸運抽獎輪盤</h1>
       <div className={styles.leftPanel}>
@@ -50,12 +59,12 @@ return (
           {isSpinning ? '抽獎中...' : '送出'}
         </button>
       </div>
-      <Wheel prizes={prizes} onSpin={handleSpin} isSpinning={isSpinning} />
+      <Wheel prizes={prizes} isSpinning={isSpinning} />
       <Results results={results} />
       <button className={styles.spinButton} onClick={handleSpin} disabled={isSpinning}>
         {isSpinning ? '抽獎中...' : '按一下抽獎'}
       </button>
-      <GoldCoins isSpinning={isSpinning} />
+      <GoldCoins showCoins={showCoins} />
     </div>
   )
 }

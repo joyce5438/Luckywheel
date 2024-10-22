@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import styles from '../styles/Wheel.module.css'
 
-export default function Wheel({ prizes, onSpin, isSpinning }) {
+export default function Wheel({ prizes, isSpinning }) {
   const [currentRotation, setCurrentRotation] = useState(0)
 
   useEffect(() => {
@@ -11,7 +11,6 @@ export default function Wheel({ prizes, onSpin, isSpinning }) {
     }
   }, [isSpinning])
 
-  // 生成 HSL 顏色
   const getHSLColor = (index, total) => {
     const hue = (index / total) * 360
     return `hsl(${hue}, 70%, 70%)`
@@ -20,7 +19,7 @@ export default function Wheel({ prizes, onSpin, isSpinning }) {
   return (
     <div className={styles.wheelContainer}>
       <div
-        className={styles.wheel}
+        className={`${styles.wheel} ${isSpinning ? styles.spinning : ''}`}
         style={{ transform: `rotate(${currentRotation}deg)` }}
       >
         {prizes.map((prize, index) => (

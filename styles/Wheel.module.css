@@ -30,7 +30,12 @@
   border-radius: 50%;
   position: relative;
   overflow: hidden;
-  transition: transform 3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  
+}
+
+.spinning {
+  transition: transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .slice {
