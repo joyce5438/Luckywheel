@@ -1,20 +1,21 @@
 import '../styles/globals.css'
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
+import { appWithTranslation } from 'next-i18next'
 
 function MyApp({ Component, pageProps }) {
   const [darkMode, setDarkMode] = useState(false)
 
   useEffect(() => {
-    // 從 localStorage 讀取主題設置，如果沒有設置，默認為 false（淺色模式）
+    // 从 localStorage 读取主题设置，如果没有设置，默认为 false（浅色模式）
     const storedDarkMode = localStorage.getItem('darkMode') === 'true'
     setDarkMode(storedDarkMode)
   }, [])
 
   useEffect(() => {
-    // 當主題改變時，更新 body 的 class
+    // 当主题改变时，更新 body 的 class
     document.body.classList.toggle('dark-mode', darkMode)
-    // 保存主題設置到 localStorage
+    // 保存主题设置到 localStorage
     localStorage.setItem('darkMode', darkMode.toString())
   }, [darkMode])
 
@@ -28,4 +29,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)
