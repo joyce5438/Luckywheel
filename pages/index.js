@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <h1>輸入獎項</h1>
+      <h1 className={styles.title}>輸入獎項</h1>
       <form onSubmit={handleSubmit} className={styles.form}>
         <textarea
           value={prizes}
