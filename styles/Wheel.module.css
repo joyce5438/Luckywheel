@@ -1,0 +1,81 @@
+.wheelContainer {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  margin: 30px auto;
+}
+
+.wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  border: 10px solid #f3f3f3;
+  box-shadow: 0 0 0 5px #e0e0e0, 0 0 0 10px #f3f3f3;
+  transition: transform 5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.rotating {
+  animation: rotate 5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.slice {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(50% 50%, 100% 0%, 100% 100%);
+  transform-origin: 50% 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+.sliceText {
+  width: 80px;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform: rotate(90deg);
+  transform-origin: right center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.wheelContainer button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.wheelContainer button:hover {
+  background-color: #0056b3;
+}
+
+.wheelContainer button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
