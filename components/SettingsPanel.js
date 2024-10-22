@@ -1,10 +1,13 @@
+import { useTranslation } from 'next-i18next'
 import styles from '../styles/SettingsPanel.module.css'
 
 export default function SettingsPanel({ removeWinner, setRemoveWinner, playSounds, setPlaySounds, darkMode, setDarkMode }) {
+  const { t } = useTranslation('common')
+
   return (
     <div className={styles.settingsPanel}>
       <div className={styles.settingItem}>
-        <span>將中獎者移出輪盤</span>
+        <span>{t('removeWinner')}</span>
         <label className={styles.switch}>
           <input
             type="checkbox"
@@ -15,7 +18,7 @@ export default function SettingsPanel({ removeWinner, setRemoveWinner, playSound
         </label>
       </div>
       <div className={styles.settingItem}>
-        <span>播放音效</span>
+        <span>{t('playSounds')}</span>
         <label className={styles.switch}>
           <input
             type="checkbox"
@@ -26,7 +29,7 @@ export default function SettingsPanel({ removeWinner, setRemoveWinner, playSound
         </label>
       </div>
       <div className={styles.settingItem}>
-        <span>深色主題</span>
+        <span>{t('darkMode')}</span>
          <label className={styles.switch}>
           <input
             type="checkbox"

@@ -8,6 +8,6 @@
   "multiSpinLabel": "連抽次數:",
   "multiSpinButton": "送出",
   "inputPrizes": "輸入獎項",
-  "prizePlaceholder": "請輸入獎項，每行一個",
+  "prizePlaceholder:one prize a line": "請輸入獎項，每行一個",
   "startDrawing": "開始抽獎"
 }

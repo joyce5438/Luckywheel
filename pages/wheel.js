@@ -39,7 +39,7 @@ export default function WheelPage({ darkMode, setDarkMode }) {
     await new Promise(resolve => setTimeout(resolve, 3000))
     
     const winningPrize = prizes[Math.floor(Math.random() * prizes.length)]
-    setResults(prev => [`${t('congratulations')}: ${winningPrize}`, ...prev])
+    setResults(prev => [`恭喜中獎：${winningPrize}`, ...prev])
     
     if (removeWinner) {
       setPrizes(prev => prev.filter(prize => prize !== winningPrize))
@@ -63,10 +63,10 @@ export default function WheelPage({ darkMode, setDarkMode }) {
   return (
     <div className={`${styles.container} ${darkMode ? styles.darkMode : ''}`}>
       <LanguageSwitcher />
-      <h1 className={styles.title}>{t('luckyDrawWheel')}</h1>
+      <h1 className={styles.title}>{t('title')}</h1>
       <div className={styles.content}>
         <div className={styles.leftPanel}>
-          <label htmlFor="numSpins">{t('multiSpinCount')}:</label>
+          <label htmlFor="numSpins">{t('multiSpinLabel')}</label>
           <input
             type="number"
             id="numSpins"
@@ -75,13 +75,13 @@ export default function WheelPage({ darkMode, setDarkMode }) {
             onChange={(e) => setNumSpins(Math.max(1, parseInt(e.target.value)))}
           />
           <button onClick={handleMultiSpin} disabled={isSpinning}>
-            {isSpinning ? t('drawing') : t('submit')}
+            {isSpinning ? t('spinning') : t('multiSpinButton')}
           </button>
         </div>
         <div className={styles.wheelContainer}>
           <Wheel prizes={prizes} isSpinning={isSpinning} />
           <button className={styles.spinButton} onClick={handleSpin} disabled={isSpinning}>
-            {isSpinning ? t('drawing') : t('spinOnce')}
+            {isSpinning ? t('spinning') : t('spinButton')}
           </button>
         </div>
         <div className={styles.rightPanel}>
