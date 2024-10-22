@@ -5,7 +5,7 @@ import GoldCoins from '../components/GoldCoins'
 import SettingsPanel from '../components/SettingsPanel'
 import styles from '../styles/Wheel.module.css'
 
-export default function WheelPage() {
+export default function WheelPage({ darkMode, setDarkMode }) {
   const [prizes, setPrizes] = useState([])
   const [results, setResults] = useState([])
   const [numSpins, setNumSpins] = useState(1)
@@ -14,10 +14,21 @@ export default function WheelPage() {
   const [removeWinner, setRemoveWinner] = useState(true)
   const [playSounds, setPlaySounds] = useState(false)
 
-  useEffect(() => {
+ useEffect(() => {
     const storedPrizes = JSON.parse(localStorage.getItem('prizes') || '[]')
     setPrizes(storedPrizes)
+    
+    // 從 localStorage 讀取主題設置
+    const storedDarkMode = localStorage.getItem('darkMode') === 'true'
+    setDarkMode(storedDarkMode)
   }, [])
+
+  useEffect(() => {
+    // 當主題改變時，更新 body 的 class
+    document.body.classList.toggle('dark-mode', darkMode)
+    // 保存主題設置到 localStorage
+    localStorage.setItem('darkMode', darkMode)
+  }, [darkMode])
 
   const handleSpin = async () => {
     if (prizes.length === 0 || isSpinning) return
@@ -77,6 +88,8 @@ export default function WheelPage() {
             setRemoveWinner={setRemoveWinner}
             playSounds={playSounds}
             setPlaySounds={setPlaySounds}
+			darkMode={darkMode}
+            setDarkMode={setDarkMode}
           />
 		  
           <Results results={results} />

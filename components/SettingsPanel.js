@@ -1,6 +1,10 @@
 import styles from '../styles/SettingsPanel.module.css'
 
-export default function SettingsPanel({ removeWinner, setRemoveWinner, playSounds, setPlaySounds }) {
+export default function SettingsPanel({ 
+  removeWinner, setRemoveWinner, 
+  playSounds, setPlaySounds,
+  darkMode, setDarkMode
+}) {
   return (
     <div className={styles.settingsPanel}>
       <div className={styles.settingItem}>
@@ -21,6 +25,17 @@ export default function SettingsPanel({ removeWinner, setRemoveWinner, playSound
             type="checkbox"
             checked={playSounds}
             onChange={(e) => setPlaySounds(e.target.checked)}
+          />
+          <span className={styles.slider}></span>
+        </label>
+      </div>
+      <div className={styles.settingItem}>
+        <span>深色主題</span>
+        <label className={styles.switch}>
+          <input
+            type="checkbox"
+            checked={darkMode}
+            onChange={(e) => setDarkMode(e.target.checked)}
           />
           <span className={styles.slider}></span>
         </label>

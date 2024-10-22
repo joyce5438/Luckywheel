@@ -6,13 +6,22 @@
   min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .title {
   font-weight: 600;
-  color: #000000;
+ 
   margin-bottom: 20px;
+    color: inherit;
 }
+
+
+.darkMode {
+  background-color: #1c1c1e;
+  color: #f2f2f7;
+}
+
 
 .content {
   display: flex;
