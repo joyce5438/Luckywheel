@@ -1,14 +1,11 @@
 .results {
-  position: fixed;
-  top: 40px;
-  right: 50px;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
+  margin: 20px auto;
   background-color: #ffffff;
   padding: 20px;
   border-radius: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  max-height: 80%;
-  overflow-y: auto;
 }
 
 .results h2 {
@@ -20,6 +17,8 @@
 .results ul {
   list-style-type: none;
   padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .results li {
@@ -35,4 +34,10 @@
   color: #ff9500;
   font-size: 18px;
   font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .results {
+    margin: 0;
+  }
 }

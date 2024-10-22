@@ -17,9 +17,9 @@ export default function Wheel({ prizes, isSpinning }) {
   }
 
   return (
-    <div className={styles.wheelContainer}>
+    <div className={styles.wheel}>
       <div
-        className={`${styles.wheel} ${isSpinning ? styles.spinning : ''}`}
+        className={`${styles.wheelInner} ${isSpinning ? styles.spinning : ''}`}
         style={{ transform: `rotate(${currentRotation}deg)` }}
       >
         {prizes.map((prize, index) => (

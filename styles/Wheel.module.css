@@ -1,41 +1,94 @@
 .container {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   text-align: center;
-  overflow: hidden;
   background-color: #f2f2f7;
   color: #1c1c1e;
   min-height: 100vh;
   padding: 20px;
+  box-sizing: border-box;
 }
 
-.container h1 {
+.title {
   font-weight: 600;
   color: #000000;
+  margin-bottom: 20px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leftPanel {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.leftPanel label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.leftPanel input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #d1d1d6;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.leftPanel button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.leftPanel button:hover {
+  background-color: #0056b3;
 }
 
 .wheelContainer {
   position: relative;
-  width: 350px;
-  height: 350px;
+  width: 100%;
+  max-width: 350px;
   margin: 30px auto;
-  background-color: #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
 }
 
 .wheel {
   width: 100%;
-  height: 100%;
-  border-radius: 50%;
+  padding-bottom: 100%;
   position: relative;
   overflow: hidden;
-  transition: transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
-  
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.wheelInner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .spinning {
-  transition: transform 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: transform 3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .slice {
@@ -84,8 +137,8 @@
 }
 
 .spinButton {
-  display: inline-block;
-  margin: 20px 10px;
+  display: block;
+  margin: 20px auto;
   padding: 12px 24px;
   font-size: 16px;
   font-weight: 600;
@@ -101,45 +154,19 @@
   background-color: #0056b3;
 }
 
-.leftPanel {
-  position: fixed;
-  top: 50px;
-  left: 30px;
-  width: 220px;
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+@media (min-width: 768px) {
+  .content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .leftPanel {
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
+
+  .wheelContainer {
+    margin: 0;
+  }
 }
-
-.leftPanel input {
-  width: 80%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #d1d1d6;
-  border-radius: 10px;
-  font-size: 16px;
-}
-
-.leftPanel label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 500;
-}
-
-.leftPanel button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.leftPanel button:hover {
-  background-color: #0056b3;
-}
-
-

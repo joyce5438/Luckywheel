@@ -21,7 +21,6 @@ export default function WheelPage() {
     setIsSpinning(true)
     setShowCoins(true)
     
-    // 等待輪盤旋轉和金幣動畫
     await new Promise(resolve => setTimeout(resolve, 3000))
     
     const winningPrize = prizes[Math.floor(Math.random() * prizes.length)]
@@ -38,32 +37,36 @@ export default function WheelPage() {
       if (prizes.length === 0) break
       await handleSpin()
       if (i < numSpins - 1) {
-        await new Promise(resolve => setTimeout(resolve, 1000)) // 連續抽獎之間的間隔
+        await new Promise(resolve => setTimeout(resolve, 1000))
       }
     }
   }
 
   return (
     <div className={styles.container}>
-      <h1>幸運抽獎輪盤</h1>
-      <div className={styles.leftPanel}>
-        <label htmlFor="numSpins">連抽次數:</label>
-        <input
-          type="number"
-          id="numSpins"
-          min="1"
-          value={numSpins}
-          onChange={(e) => setNumSpins(Math.max(1, parseInt(e.target.value)))}
-        />
-        <button onClick={handleMultiSpin} disabled={isSpinning}>
-          {isSpinning ? '抽獎中...' : '送出'}
-        </button>
+      <h1 className={styles.title}>幸運抽獎輪盤</h1>
+      <div className={styles.content}>
+        <div className={styles.leftPanel}>
+          <label htmlFor="numSpins">連抽次數:</label>
+          <input
+            type="number"
+            id="numSpins"
+            min="1"
+            value={numSpins}
+            onChange={(e) => setNumSpins(Math.max(1, parseInt(e.target.value)))}
+          />
+          <button onClick={handleMultiSpin} disabled={isSpinning}>
+            {isSpinning ? '抽獎中...' : '送出'}
+          </button>
+        </div>
+        <div className={styles.wheelContainer}>
+          <Wheel prizes={prizes} isSpinning={isSpinning} />
+          <button className={styles.spinButton} onClick={handleSpin} disabled={isSpinning}>
+            {isSpinning ? '抽獎中...' : '按一下抽獎'}
+          </button>
+        </div>
+        <Results results={results} />
       </div>
-      <Wheel prizes={prizes} isSpinning={isSpinning} />
-      <Results results={results} />
-      <button className={styles.spinButton} onClick={handleSpin} disabled={isSpinning}>
-        {isSpinning ? '抽獎中...' : '按一下抽獎'}
-      </button>
       <GoldCoins showCoins={showCoins} />
     </div>
   )
