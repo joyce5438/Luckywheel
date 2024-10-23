@@ -23,6 +23,9 @@
   color: #000000;
 }
 
+.darkMode .settingItem {
+  color: #000000; /* 确保设置项的文字在深色模式下也是浅色的 */
+}
 
 .settingItem:last-child {
   margin-bottom: 0;
