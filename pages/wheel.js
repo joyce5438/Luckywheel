@@ -41,8 +41,7 @@ export default function WheelPage({ darkMode, setDarkMode }) {
     await new Promise(resolve => setTimeout(resolve, 3000))
     
     const winningPrize = prizes[Math.floor(Math.random() * prizes.length)]
-    setResults(prev => [`${t('congratulations')}: ${winningPrize}`, ...prev])
-    
+  setResults(prev => [`congratulations:${winningPrize}`, ...prev])
     
     if (removeWinner) {
       setPrizes(prev => prev.filter(prize => prize !== winningPrize))

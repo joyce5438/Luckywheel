@@ -8,9 +8,14 @@ export default function Results({ results }) {
     <div className={styles.results}>
       <h2 className={styles.title}>{t('resultsTitle')}</h2>
       <ul className={styles.list}>
-        {results.map((result, index) => (
-          <li key={index} className={styles.item}>{result}</li>
-        ))}
+        {results.map((result, index) => {
+          const [congratsKey, prize] = result.split(':')
+          return (
+            <li key={index} className={styles.item}>
+              {t(congratsKey)}: {prize.trim()}
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
