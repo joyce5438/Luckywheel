@@ -5,11 +5,11 @@ export default function Results({ results }) {
   const { t } = useTranslation('common')
 
   return (
-    <div>
-      <h2>{t('resultsTitle')}</h2>
-      <ul>
+    <div className={styles.results}>
+      <h2 className={styles.title}>{t('resultsTitle')}</h2>
+      <ul className={styles.list}>
         {results.map((result, index) => (
-          <li key={index}>{result}</li>
+          <li key={index} className={styles.item}>{result}</li>
         ))}
       </ul>
     </div>

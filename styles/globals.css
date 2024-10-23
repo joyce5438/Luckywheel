@@ -44,6 +44,11 @@ a {
   color: #f2f2f7;
 }
 
+ul {
+  list-style-type: none;
+}
+
+
 @media (max-width: 767px) {
   html {
     font-size: 14px;
