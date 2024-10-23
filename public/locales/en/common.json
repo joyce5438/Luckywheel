@@ -9,5 +9,8 @@
   "multiSpinButton": "Submit",
   "inputPrizes": "Enter Prizes",
   "prizePlaceholder": "Enter prizes, one per line",
-  "startDrawing": "Start Drawing"
+  "startDrawing": "Start Drawing",
+  "enterNumber": "Enter number of prizes",
+  "generateSequence": "Auto Generate",
+  "invalidNumberError": "Please enter an integer"
 }

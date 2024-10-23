@@ -63,11 +63,21 @@
   color: #f2f2f7;
 }
 
-.darkMode .leftPanel,
-.darkMode .settingsPanel,
-.darkMode .results {
+.darkMode .leftPanel {
   background-color: #2c2c2e;
   color: #f2f2f7;
+}
+
+.darkMode .leftPanel input,
+.darkMode .leftPanel textarea {
+  text-align: center;
+  color: #ffffff; /* 确保文字颜色为黑色 */
+}
+
+.darkMode .settingsPanel,
+.darkMode .results {
+  background-color: #ffffff;
+  color: #000000;
 }
 
 .darkMode .spinButton {
@@ -109,6 +119,7 @@
   border: 1px solid #d1d1d6;
   border-radius: 10px;
   font-size: 16px;
+  text-align: center;
 }
 
 .leftPanel button {

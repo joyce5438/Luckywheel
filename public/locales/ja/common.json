@@ -9,5 +9,8 @@
   "multiSpinButton": "送信",
   "inputPrizes": "賞品を入力",
   "prizePlaceholder": "賞品を1行ずつ入力してください",
-  "startDrawing": "抽選を開始"
-}
+  "startDrawing": "抽選を開始",
+  "enterNumber": "賞品数を入力",
+  "generateSequence": "自動生成",
+  "invalidNumberError": "整数を入力してください"
+}   
