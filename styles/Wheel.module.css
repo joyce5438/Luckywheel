@@ -48,7 +48,7 @@
 
 /* 深色模式下的语言切换器样式 */
 .darkMode .languageSwitcher a {
-  color: #a0a0a0;
+  color: #ffffff;
 }
 
 .darkMode .languageSwitcher a:hover {
@@ -58,9 +58,9 @@
 .darkMode .languageSwitcher .active {
   color: #4dabf7;
 }
+
 .darkMode {
   background-color: #1c1c1e;
-  color: #f2f2f7;
 }
 
 .darkMode .leftPanel {
