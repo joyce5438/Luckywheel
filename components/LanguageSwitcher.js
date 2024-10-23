@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import styles from '../styles/Wheel.module.css'
+
 
 export default function LanguageSwitcher() {
   const router = useRouter()
@@ -18,7 +20,7 @@ export default function LanguageSwitcher() {
   }
 
   return (
-    <div>
+    <div className={styles.languageSwitcher}>
       {router.locales.map((locale) => (
         <Link 
           key={locale} 

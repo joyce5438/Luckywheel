@@ -16,7 +16,48 @@
   
 }
 
+.darkMode .title {
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 20px; /* 或其他您喜欢的颜色 */
+}
 
+/* 语言切换器样式 */
+.languageSwitcher {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.languageSwitcher a {
+  margin-right: 10px;
+  cursor: pointer;
+  color: #000000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.languageSwitcher a:hover {
+  color: #007bff;
+}
+
+.languageSwitcher .active {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+/* 深色模式下的语言切换器样式 */
+.darkMode .languageSwitcher a {
+  color: #a0a0a0;
+}
+
+.darkMode .languageSwitcher a:hover {
+  color: #ffffff;
+}
+
+.darkMode .languageSwitcher .active {
+  color: #4dabf7;
+}
 .darkMode {
   background-color: #1c1c1e;
   color: #f2f2f7;
