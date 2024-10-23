@@ -21,24 +21,19 @@ export default function LanguageSwitcher() {
 
   return (
     <div className={styles.languageSwitcher}>
-      {router.locales.map((locale) => (
-        <Link 
-          key={locale} 
-          href={router.asPath} 
-          locale={locale}
+    {router.locales.map((locale) => (
+      <Link 
+        key={locale} 
+        href={router.asPath} 
+        locale={locale}
+      >
+        <span 
+          className={`${styles.languageOption} ${router.locale === locale ? styles.active : ''}`}
         >
-          <span 
-            style={{ 
-              marginRight: '10px', 
-              cursor: 'pointer', 
-              color: router.locale === locale ? 'blue' : 'black',
-              textDecoration: router.locale === locale ? 'underline' : 'none'
-            }}
-          >
-            {getLanguageName(locale)}
-          </span>
-        </Link>
-      ))}
-    </div>
+          {getLanguageName(locale)}
+        </span>
+      </Link>
+    ))}
+  </div>
   )
 }
