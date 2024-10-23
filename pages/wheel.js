@@ -1,3 +1,4 @@
+import { NextSeo } from 'next-seo'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import LanguageSwitcher from '../components/LanguageSwitcher'
@@ -39,7 +40,8 @@ export default function WheelPage({ darkMode, setDarkMode }) {
     await new Promise(resolve => setTimeout(resolve, 3000))
     
     const winningPrize = prizes[Math.floor(Math.random() * prizes.length)]
-    setResults(prev => [`恭喜中獎：${winningPrize}`, ...prev])
+    setResults(prev => [`${t('congratulations')}: ${winningPrize}`, ...prev])
+    
     
     if (removeWinner) {
       setPrizes(prev => prev.filter(prize => prize !== winningPrize))
@@ -61,6 +63,17 @@ export default function WheelPage({ darkMode, setDarkMode }) {
   }
 
   return (
+    <Fragment>
+    <NextSeo
+      title={t('seoTitle')}
+      description={t('seoDescription')}
+      openGraph={{
+        title: t('seoTitle'),
+        description: t('seoDescription'),
+        site_name: t('siteName'),
+        url: 'https://luckywheel-taupe.vercel.app/',
+      }}
+    />
     <div className={`${styles.container} ${darkMode ? styles.darkMode : ''}`}>
       <LanguageSwitcher />
       <h1 className={styles.title}>{t('title')}</h1>
@@ -98,6 +111,7 @@ export default function WheelPage({ darkMode, setDarkMode }) {
       </div>
       <GoldCoins showCoins={showCoins} playSounds={playSounds} />
     </div>
+    </Fragment>
   )
 }
 

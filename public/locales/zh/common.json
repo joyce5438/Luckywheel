@@ -12,5 +12,10 @@
   "startDrawing": "開始抽獎",
   "enterNumber": "输入獎項數量",
   "generateSequence": "自動產生",
-  "invalidNumberError": "请输入整数"
+  "invalidNumberError": "请输入整数",
+  "seoTitle": "幸運抽獎輪盤 | 炒熱活動氣氛的最佳幫手",
+  "seoDescription": "使用幸運抽獎輪盤，贏取獎品獎金！快來試試您的運氣吧。",
+  "seoImageAlt": "幸運抽獎輪盤",
+  "congratulations": "恭喜中獎",
+  "resultsTitle": "結果"
 }
