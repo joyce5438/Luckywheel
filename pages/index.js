@@ -36,17 +36,6 @@ export default function Home() {
   }
 
   return (
-    <Fragment>
-    <NextSeo
-      title={t('seoTitle')}
-      description={t('seoDescription')}
-      openGraph={{
-        title: t('seoTitle'),
-        description: t('seoDescription'),
-        site_name: t('siteName'),
-        url: 'https://luckywheel-taupe.vercel.app/',
-      }}
-    />
     <div className={styles.container}>
       <LanguageSwitcher />
       <h1 className={styles.title}>{t('inputPrizes')}</h1>
@@ -80,7 +69,6 @@ export default function Home() {
         <button type="submit" className={styles.button}>{t('startDrawing')}</button>
       </form>
     </div>
-    </Fragment>
   )
 }
 
