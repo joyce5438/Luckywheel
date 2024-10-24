@@ -12,7 +12,7 @@ import styles from '../styles/Wheel.module.css'
 
 export default function WheelPage({ darkMode, setDarkMode }) {
   const { t } = useTranslation('common')
-  const [spinDuration, setSpinDuration] = useState(2.5);
+  const [spinDuration, setSpinDuration] = useState(2.5); // 預設值設為 4.0 秒
   const [prizes, setPrizes] = useState([])
   const [results, setResults] = useState([])
   const [numSpins, setNumSpins] = useState(1)
@@ -65,55 +65,67 @@ export default function WheelPage({ darkMode, setDarkMode }) {
 
   return (
     <Fragment>
-    <NextSeo
-      title={t('seoTitle')}
-      description={t('seoDescription')}
-      openGraph={{
-        title: t('seoTitle'),
-        description: t('seoDescription'),
-        site_name: t('siteName'),
-        url: 'https://luckywheel-taupe.vercel.app/',
-      }}
-    />
-    <div className={`${styles.container} ${darkMode ? styles.darkMode : ''}`}>
-      <LanguageSwitcher />
-      <h1 className={styles.title}>{t('title')}</h1>
-      <div className={styles.content}>
-        <div className={styles.leftPanel}>
-          <label htmlFor="numSpins">{t('multiSpinLabel')}</label>
-          <input
-            type="number"
-            id="numSpins"
-            min="1"
-            value={numSpins}
-            onChange={(e) => setNumSpins(Math.max(1, parseInt(e.target.value)))}
-          />
-          <button onClick={handleMultiSpin} disabled={isSpinning}>
-            {isSpinning ? t('spinning') : t('multiSpinButton')}
-          </button>
+      <NextSeo
+        title={t('seoTitle')}
+        description={t('seoDescription')}
+        openGraph={{
+          title: t('seoTitle'),
+          description: t('seoDescription'),
+          site_name: t('siteName'),
+          url: 'https://luckywheel-taupe.vercel.app/',
+        }}
+      />
+      <div className={`${styles.container} ${darkMode ? styles.darkMode : ''}`}>
+        <LanguageSwitcher />
+        <h1 className={styles.title}>{t('title')}</h1>
+        <div className={styles.content}>
+          <div className={styles.leftPanel}>
+            <label htmlFor="numSpins">{t('multiSpinLabel')}</label>
+            <input
+              type="number"
+              id="numSpins"
+              min="1"
+              value={numSpins}
+              onChange={(e) => setNumSpins(Math.max(1, parseInt(e.target.value)))}
+            />
+            <button onClick={handleMultiSpin} disabled={isSpinning}>
+              {isSpinning ? t('spinning') : t('multiSpinButton')}
+            </button>
+          </div>
+          <div className={styles.wheelContainer}>
+            <Wheel prizes={prizes} isSpinning={isSpinning} spinDuration={spinDuration} />
+            <button className={styles.spinButton} onClick={handleSpin} disabled={isSpinning}>
+              {isSpinning ? t('spinning') : t('spinButton')}
+            </button>
+          </div>
+          <div className={styles.rightPanel}>
+            <SettingsPanel 
+              removeWinner={removeWinner} 
+              setRemoveWinner={setRemoveWinner}
+              playSounds={playSounds}
+              setPlaySounds={setPlaySounds}
+              darkMode={darkMode}
+              setDarkMode={setDarkMode} 
+            />
+            <div className={styles.spinDurationControl}>
+              <label htmlFor="spinDuration">{t('spinDurationLabel')}</label>
+              <input
+                type="range"
+                id="spinDuration"
+                min="0.5"
+                max="5"
+                step="0.1"
+                value={spinDuration}
+                onChange={(e) => setSpinDuration(parseFloat(e.target.value))}
+                className={styles.slider}
+              />
+              <span>{spinDuration.toFixed(1)}s</span>
+            </div>
+            <Results results={results} />
+          </div>
         </div>
-        <div className={styles.wheelContainer}>
-          <Wheel prizes={prizes} isSpinning={isSpinning} spinDuration={spinDuration} />
-          <button className={styles.spinButton} onClick={handleSpin} disabled={isSpinning}>
-            {isSpinning ? t('spinning') : t('spinButton')}
-          </button>
-        </div>
-        <div className={styles.rightPanel}>
-          <SettingsPanel 
-            removeWinner={removeWinner} 
-            setRemoveWinner={setRemoveWinner}
-            playSounds={playSounds}
-            setPlaySounds={setPlaySounds}
-            darkMode={darkMode}
-            setDarkMode={setDarkMode} 
-            spinDuration={spinDuration}
-            setSpinDuration={setSpinDuration}
-          />
-          <Results results={results} />
-        </div>
+        <GoldCoins showCoins={showCoins} playSounds={playSounds} />
       </div>
-      <GoldCoins showCoins={showCoins} playSounds={playSounds} />
-    </div>
     </Fragment>
   )
 }
