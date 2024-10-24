@@ -90,3 +90,19 @@ input:checked + .slider:before {
   justify-content: space-between;
   margin-bottom: 10px;
 }
+
+.spinDurationControl {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.spinDurationControl input {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.spinDurationControl span {
+  min-width: 40px;
+  text-align: right;
+}

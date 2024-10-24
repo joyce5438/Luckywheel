@@ -106,8 +106,10 @@ export default function WheelPage({ darkMode, setDarkMode }) {
             setPlaySounds={setPlaySounds}
             darkMode={darkMode}
             setDarkMode={setDarkMode} 
+            spinDuration={spinDuration}
+            setSpinDuration={setSpinDuration}
           />
- 
+   
 
           <Results results={results} />
         </div>
