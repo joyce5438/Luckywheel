@@ -8,30 +8,76 @@
 
 .settingItem {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.darkMode .settingsPanel {
-  background-color: #ffffff;
-  border-radius: 10px;
-  padding: 15px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  color: #000000;
-}
-
-.darkMode .settingItem {
-  color: #000000; /* 确保设置项的文字在深色模式下也是浅色的 */
+  width: 100%;
 }
 
 .settingItem:last-child {
   margin-bottom: 0;
 }
 
+/* 旋轉時間(文字) */
+.settingItem > span:first-child {
+  margin-bottom: 10px;
+}
 
+/* 秒數(文字) */
+.settingItem > span:nth-child(2) {
+  align-self: flex-end;
+  margin-top: 5px;
+}
+
+/* 控制時間的橫桿(介面) */
+.spinDurationControl {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.spinDurationControl input[type="range"] {
+  width: 100%;
+  margin-right: 0;
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+/* 自定義滑動條樣式 */
+.spinDurationControl input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #007aff;
+  cursor: pointer;
+  margin-top: -6px;
+}
+
+.spinDurationControl input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  background: #ddd;
+  border-radius: 2px;
+}
+
+/* Firefox 的滑動條樣式 */
+.spinDurationControl input[type="range"]::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #007aff;
+  cursor: pointer;
+}
+
+.spinDurationControl input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  background: #ddd;
+  border-radius: 2px;
+}
+
+/* 開關樣式 */
 .switch {
   position: relative;
   display: inline-block;
@@ -69,7 +115,6 @@
   border-radius: 50%;
 }
 
-
 input:checked + .slider {
   background-color: #007aff;
 }
@@ -78,72 +123,12 @@ input:checked + .slider:before {
   transform: translateX(22px);
 }
 
-
-
-
-.settingItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 16px;
-  margin-bottom: 20px; /* 增加底部間距 */
-  flex-direction: column; /* 改為垂直排列 */
-  align-items: flex-start; /* 左對齊 */
+/* 深色模式樣式 */
+.darkMode .settingsPanel {
+  background-color: #333333;
+  color: #ffffff;
 }
 
-/* 旋轉時間(文字) */
-.settingItem > span:first-child {
-  margin-bottom: 10px; /* 增加與滑桿的間距 */
-}
-
-/* 秒數(文字) */
-.settingItem > span:nth-child(2) {
-  align-self: flex-end; /* 將秒數靠右對齊 */
-  margin-top: 5px; /* 增加與滑桿的間距 */
-}
-
-/* 控制時間的橫桿(介面) */
-.spinDurationControl {
-  width: 100%; /* 確保滑桿佔滿整個寬度 */
-  margin-top: 5px; /* 調整上方間距 */
-}
-
-.spinDurationControl input[type="range"] {
-  width: 100%;
-  margin-right: 0; /* 移除右側間距 */
-}
-
-/* 其他樣式保持不變 */
-/* 自定義滑動條樣式 */
-.spinDurationControl input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  background: #007aff;
-  cursor: pointer;
-  margin-top: -6px;
-}
-
-.spinDurationControl input[type="range"]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 4px;
-  background: #ddd;
-  border-radius: 2px;
-}
-
-/* Firefox 的滑動條樣式 */
-.spinDurationControl input[type="range"]::-moz-range-thumb {
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  background: #007aff;
-  cursor: pointer;
-}
-
-.spinDurationControl input[type="range"]::-moz-range-track {
-  width: 100%;
-  height: 4px;
-  background: #ddd;
-  border-radius: 2px;
+.darkMode .settingItem {
+  color: #ffffff;
 }
