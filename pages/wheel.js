@@ -48,7 +48,7 @@ export default function WheelPage({ darkMode, setDarkMode }) {
     setIsSpinning(true)
     setShowCoins(true)
     
-    await new Promise(resolve => setTimeout(resolve, 3000))
+    await new Promise(resolve => setTimeout(resolve, spinDuration * 1000))
     
     const winningPrize = prizes[Math.floor(Math.random() * prizes.length)]
   setResults(prev => [`congratulations:${winningPrize}`, ...prev])
