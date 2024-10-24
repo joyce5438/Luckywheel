@@ -6,25 +6,31 @@ export default function Wheel({ prizes, isSpinning, spinDuration }) {
 
   useEffect(() => {
     if (isSpinning) {
-      const spinAngle = Math.floor(Math.random() * 360) + 720; // 至少旋轉兩圈
+      // 根據時間調整旋轉圈數
+      const baseSpins = 3; // 基礎圈數
+      const additionalSpins = Math.floor(spinDuration); // 根據時間增加圈數
+      const totalSpins = baseSpins + additionalSpins;
+      const spinAngle = (totalSpins * 360) + Math.floor(Math.random() * 360);
+      
       setCurrentRotation(prevRotation => prevRotation + spinAngle);
     }
-  }, [isSpinning])
+  }, [isSpinning, spinDuration])
 
   const getHSLColor = (index, total) => {
     const hue = (index / total) * 360
     return `hsl(${hue}, 70%, 70%)`
   }
 
-  const animationStyle = {
-    animation: isSpinning ? `spin ${spinDuration}s cubic-bezier(0.25, 0.1, 0.25, 1) forwards` : 'none'
-  };
-
   return (
     <div className={styles.wheel}>
       <div
-        className={`${styles.wheelInner} ${isSpinning ? styles.spinning : ''}`}
-        style={{ transform: `rotate(${currentRotation}deg)` }}
+        className={`${styles.wheelInner}`}
+        style={{
+          transform: `rotate(${currentRotation}deg)`,
+          transition: isSpinning 
+            ? `transform ${spinDuration}s cubic-bezier(0.25, 0.1, 0.25, 1)`
+            : 'none'
+        }}
       >
         {prizes.map((prize, index) => (
           <div
