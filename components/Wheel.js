@@ -7,18 +7,18 @@ export default function Wheel({ prizes, isSpinning, spinDuration }) {
   useEffect(() => {
     if (isSpinning) {
       const spinAngle = Math.floor(Math.random() * 360) + 720; // 至少旋轉兩圈
-      setRotation(prevRotation => prevRotation + spinAngle);
-    // 使用傳入的 spinDuration
-    setStyle({ transform: `rotate(${rotation + spinAngle}deg)`, transition: `transform ${spinDuration}s cubic-bezier(0.25, 0.1, 0.25, 1)` });
-  }
-
-
-  }, [isSpinning, spinDuration])
+      setCurrentRotation(prevRotation => prevRotation + spinAngle);
+    }
+  }, [isSpinning])
 
   const getHSLColor = (index, total) => {
     const hue = (index / total) * 360
     return `hsl(${hue}, 70%, 70%)`
   }
+
+  const animationStyle = {
+    animation: isSpinning ? `spin ${spinDuration}s cubic-bezier(0.25, 0.1, 0.25, 1) forwards` : 'none'
+  };
 
   return (
     <div className={styles.wheel}>
