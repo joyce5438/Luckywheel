@@ -81,45 +81,39 @@ input:checked + .slider:before {
 
 
 
-
 .settingItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 16px;
-  margin-bottom: 10px;
-  flex-wrap: wrap; /* 允許元素換行 */
+  margin-bottom: 20px; /* 增加底部間距 */
+  flex-direction: column; /* 改為垂直排列 */
+  align-items: flex-start; /* 左對齊 */
 }
 
 /* 旋轉時間(文字) */
 .settingItem > span:first-child {
-  flex-basis: 100%; /* 讓文字佔據整行 */
-  margin-bottom: 5px;
+  margin-bottom: 10px; /* 增加與滑桿的間距 */
 }
 
 /* 秒數(文字) */
 .settingItem > span:nth-child(2) {
-  order: 3; /* 將秒數放到最後 */
-  min-width: 40px;
-  text-align: right;
+  align-self: flex-end; /* 將秒數靠右對齊 */
+  margin-top: 5px; /* 增加與滑桿的間距 */
 }
 
 /* 控制時間的橫桿(介面) */
 .spinDurationControl {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-  order: 2; /* 將滑動條放在中間 */
+  width: 100%; /* 確保滑桿佔滿整個寬度 */
+  margin-top: 5px; /* 調整上方間距 */
 }
 
 .spinDurationControl input[type="range"] {
   width: 100%;
-  margin-right: 10px;
-  -webkit-appearance: none;
-  background: transparent;
+  margin-right: 0; /* 移除右側間距 */
 }
 
+/* 其他樣式保持不變 */
 /* 自定義滑動條樣式 */
 .spinDurationControl input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
