@@ -65,49 +65,51 @@ export default function WheelPage({ darkMode, setDarkMode }) {
 
   return (
     <Fragment>
-      <NextSeo
-        title={t('seoTitle')}
-        description={t('seoDescription')}
-        openGraph={{
-          title: t('seoTitle'),
-          description: t('seoDescription'),
-          site_name: t('siteName'),
-          url: 'https://luckywheel-taupe.vercel.app/',
-        }}
-      />
-      <div className={`${styles.container} ${darkMode ? styles.darkMode : ''}`}>
-        <LanguageSwitcher />
-        <h1 className={styles.title}>{t('title')}</h1>
-        <div className={styles.content}>
-          <div className={styles.leftPanel}>
-            <label htmlFor="numSpins">{t('multiSpinLabel')}</label>
-            <input
-              type="number"
-              id="numSpins"
-              min="1"
-              value={numSpins}
-              onChange={(e) => setNumSpins(Math.max(1, parseInt(e.target.value)))}
-            />
-            <button onClick={handleMultiSpin} disabled={isSpinning}>
-              {isSpinning ? t('spinning') : t('multiSpinButton')}
-            </button>
-          </div>
-          <div className={styles.wheelContainer}>
-            <Wheel prizes={prizes} isSpinning={isSpinning} spinDuration={spinDuration} />
-            <button className={styles.spinButton} onClick={handleSpin} disabled={isSpinning}>
-              {isSpinning ? t('spinning') : t('spinButton')}
-            </button>
-          </div>
-          <div className={styles.rightPanel}>
-            <SettingsPanel 
-              removeWinner={removeWinner} 
-              setRemoveWinner={setRemoveWinner}
-              playSounds={playSounds}
-              setPlaySounds={setPlaySounds}
-              darkMode={darkMode}
-              setDarkMode={setDarkMode} 
-            />
-            <div className={styles.spinDurationControl}>
+    <NextSeo
+      title={t('seoTitle')}
+      description={t('seoDescription')}
+      openGraph={{
+        title: t('seoTitle'),
+        description: t('seoDescription'),
+        site_name: t('siteName'),
+        url: 'https://luckywheel-taupe.vercel.app/',
+      }}
+    />
+    <div className={`${styles.container} ${darkMode ? styles.darkMode : ''}`}>
+      <LanguageSwitcher />
+      <h1 className={styles.title}>{t('title')}</h1>
+      <div className={styles.content}>
+        <div className={styles.leftPanel}>
+          <label htmlFor="numSpins">{t('multiSpinLabel')}</label>
+          <input
+            type="number"
+            id="numSpins"
+            min="1"
+            value={numSpins}
+            onChange={(e) => setNumSpins(Math.max(1, parseInt(e.target.value)))}
+          />
+          <button onClick={handleMultiSpin} disabled={isSpinning}>
+            {isSpinning ? t('spinning') : t('multiSpinButton')}
+          </button>
+        </div>
+        <div className={styles.wheelContainer}>
+          <Wheel prizes={prizes} isSpinning={isSpinning} spinDuration={spinDuration} />
+          <button className={styles.spinButton} onClick={handleSpin} disabled={isSpinning}>
+            {isSpinning ? t('spinning') : t('spinButton')}
+          </button>
+        </div>
+        <div className={styles.rightPanel}>
+          <SettingsPanel 
+            removeWinner={removeWinner} 
+            setRemoveWinner={setRemoveWinner}
+            playSounds={playSounds}
+            setPlaySounds={setPlaySounds}
+            darkMode={darkMode}
+            setDarkMode={setDarkMode} 
+            spinDuration={spinDuration}
+            setSpinDuration={setSpinDuration}
+          />
+     <div className={styles.spinDurationControl}>
               <label htmlFor="spinDuration">{t('spinDurationLabel')}</label>
               <input
                 type="range"
@@ -121,11 +123,12 @@ export default function WheelPage({ darkMode, setDarkMode }) {
               />
               <span>{spinDuration.toFixed(1)}s</span>
             </div>
-            <Results results={results} />
-          </div>
+
+          <Results results={results} />
         </div>
-        <GoldCoins showCoins={showCoins} playSounds={playSounds} />
       </div>
+      <GoldCoins showCoins={showCoins} playSounds={playSounds} />
+    </div>
     </Fragment>
   )
 }
