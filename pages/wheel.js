@@ -34,6 +34,15 @@ export default function WheelPage({ darkMode, setDarkMode }) {
     localStorage.setItem('darkMode', darkMode.toString())
   }, [darkMode])
 
+  useEffect(() => {
+    const storedSpinDuration = parseFloat(localStorage.getItem('spinDuration') || '2.5');
+    setSpinDuration(storedSpinDuration);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('spinDuration', spinDuration.toString());
+  }, [spinDuration]);
+
   const handleSpin = async () => {
     if (prizes.length === 0 || isSpinning) return
     setIsSpinning(true)
