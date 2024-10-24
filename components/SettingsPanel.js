@@ -50,7 +50,8 @@ export default function SettingsPanel({
       </div>
       <div className={styles.settingItem}>
         <span>{t('spinDurationLabel')}</span>
-        <div className={styles.spinDurationControl}>
+        <span>{spinDuration.toFixed(1)}s</span>
+        <span className={styles.spinDurationControl}>
           <input
             type="range"
             id="spinDuration"
@@ -61,8 +62,9 @@ export default function SettingsPanel({
             onChange={(e) => setSpinDuration(parseFloat(e.target.value))}
             className={styles.slider}
           />
-          <span>{spinDuration.toFixed(1)}s</span>
-        </div>
+         
+        </span>
+       
       </div>
     </div>
   )
