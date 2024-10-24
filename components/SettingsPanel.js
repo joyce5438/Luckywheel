@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next'
 import styles from '../styles/SettingsPanel.module.css'
 
-export default function SettingsPanel({ removeWinner, setRemoveWinner, playSounds, setPlaySounds, darkMode, setDarkMode }) {
+export default function SettingsPanel({ removeWinner, setRemoveWinner, playSounds, setPlaySounds, darkMode, setDarkMode,spinDuration,setSpinDuration }) {
   const { t } = useTranslation('common')
 
   return (
@@ -39,6 +39,18 @@ export default function SettingsPanel({ removeWinner, setRemoveWinner, playSound
           <span className={styles.slider}></span>
         </label>
       </div>
+      <div className={styles.settingItem}> <label htmlFor="spinDuration">{t('spinDurationLabel')}</label>
+        <input
+          type="range"
+          id="spinDuration"
+          min="0.5"
+          max="6"
+          step="0.5"
+          value={spinDuration}
+          onChange={(e) => setSpinDuration(parseFloat(e.target.value))}
+          className={styles.slider}
+        />
+        <span>{spinDuration.toFixed(1)}s</span></div>
     </div>
   )
 }

@@ -12,6 +12,7 @@ import styles from '../styles/Wheel.module.css'
 
 export default function WheelPage({ darkMode, setDarkMode }) {
   const { t } = useTranslation('common')
+  const [spinDuration, setSpinDuration] = useState(2.5);
   const [prizes, setPrizes] = useState([])
   const [results, setResults] = useState([])
   const [numSpins, setNumSpins] = useState(1)
@@ -92,7 +93,7 @@ export default function WheelPage({ darkMode, setDarkMode }) {
           </button>
         </div>
         <div className={styles.wheelContainer}>
-          <Wheel prizes={prizes} isSpinning={isSpinning} />
+          <Wheel prizes={prizes} isSpinning={isSpinning} spinDuration={spinDuration} />
           <button className={styles.spinButton} onClick={handleSpin} disabled={isSpinning}>
             {isSpinning ? t('spinning') : t('spinButton')}
           </button>
@@ -105,6 +106,8 @@ export default function WheelPage({ darkMode, setDarkMode }) {
             setPlaySounds={setPlaySounds}
             darkMode={darkMode}
             setDarkMode={setDarkMode} 
+            spinDuration={spinDuration}
+            setSpinDuration={setSpinDuration}
           />
           <Results results={results} />
         </div>
