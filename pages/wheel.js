@@ -106,23 +106,8 @@ export default function WheelPage({ darkMode, setDarkMode }) {
             setPlaySounds={setPlaySounds}
             darkMode={darkMode}
             setDarkMode={setDarkMode} 
-            spinDuration={spinDuration}
-            setSpinDuration={setSpinDuration}
           />
-     <div className={styles.spinDurationControl}>
-              <label htmlFor="spinDuration">{t('spinDurationLabel')}</label>
-              <input
-                type="range"
-                id="spinDuration"
-                min="0.5"
-                max="5"
-                step="0.1"
-                value={spinDuration}
-                onChange={(e) => setSpinDuration(parseFloat(e.target.value))}
-                className={styles.slider}
-              />
-              <span>{spinDuration.toFixed(1)}s</span>
-            </div>
+ 
 
           <Results results={results} />
         </div>

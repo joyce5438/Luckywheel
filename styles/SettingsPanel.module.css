@@ -81,6 +81,7 @@ input:checked + .slider:before {
 .slider {
   width: 80%;
   margin: 10px 0;
+  height: 28px;
 }
 
 .settingItem {
