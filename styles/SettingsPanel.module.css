@@ -82,18 +82,74 @@ input:checked + .slider:before {
 
 
 
+.settingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 10px;
+  flex-wrap: wrap; /* 允許元素換行 */
+}
+
+/* 旋轉時間(文字) */
+.settingItem > span:first-child {
+  flex-basis: 100%; /* 讓文字佔據整行 */
+  margin-bottom: 5px;
+}
+
+/* 秒數(文字) */
+.settingItem > span:nth-child(2) {
+  order: 3; /* 將秒數放到最後 */
+  min-width: 40px;
+  text-align: right;
+}
+
+/* 控制時間的橫桿(介面) */
 .spinDurationControl {
+  flex-grow: 1;
   display: flex;
   align-items: center;
   margin-top: 10px;
+  order: 2; /* 將滑動條放在中間 */
 }
 
-.spinDurationControl input {
-  flex-grow: 1;
+.spinDurationControl input[type="range"] {
+  width: 100%;
   margin-right: 10px;
+  -webkit-appearance: none;
+  background: transparent;
 }
 
-.spinDurationControl span {
-  min-width: 40px;
-  text-align: right;
+/* 自定義滑動條樣式 */
+.spinDurationControl input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #007aff;
+  cursor: pointer;
+  margin-top: -6px;
+}
+
+.spinDurationControl input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  background: #ddd;
+  border-radius: 2px;
+}
+
+/* Firefox 的滑動條樣式 */
+.spinDurationControl input[type="range"]::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #007aff;
+  cursor: pointer;
+}
+
+.spinDurationControl input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  background: #ddd;
+  border-radius: 2px;
 }

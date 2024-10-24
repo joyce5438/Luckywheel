@@ -50,8 +50,7 @@ export default function SettingsPanel({
       </div>
       <div className={styles.settingItem}>
         <span>{t('spinDurationLabel')}</span>
-        <span>{spinDuration.toFixed(1)}s</span>
-        <span className={styles.spinDurationControl}>
+        <div className={styles.spinDurationControl}>
           <input
             type="range"
             id="spinDuration"
@@ -63,8 +62,8 @@ export default function SettingsPanel({
             className={styles.slider}
           />
          
-        </span>
-       
+        </div>
+        <span>{spinDuration.toFixed(1)}s</span>
       </div>
     </div>
   )
