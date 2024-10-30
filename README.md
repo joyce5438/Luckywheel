@@ -1,13 +1,13 @@
-Luckywheel
+# Luckywheel
 Luckywheel is a lottery wheel website based on Next.js and Prisma, providing an interactive lottery experience that allows users to participate in lottery activities and win prizes.
 
-Main Features
+## Main Features
 Interactive Lottery Wheel: Users can randomly draw prizes, with sound effects and animations making the lottery process more engaging.
 Prize Management: Administrators can easily add, edit, and delete prizes.
 Winner Removal
 Multi-language and Light/Dark Mode Settings
 Installation and Usage
-Clone this project:
+## Clone this project:
 複製
 git clone https://github.com/joyce5438/Luckywheel.git
 cd Luckywheel
